@@ -1,0 +1,50 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using UmbracoAngularJs.Extensions;
+
+@{
+    Layout = null;
+
+    var isNgEnabled = false;
+    if (Model.Content.HasValue("enableNg"))
+    {
+        isNgEnabled = Model.Content.GetPropertyValue<bool>("enableNg", false);
+    }
+}
+
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <script src="~/Custom/Client/assets/js/angular-1.7.2.js"></script>
+    <script src="~/Custom/Client/assets/js/ui-bootstrap-tpls-3.0.4.js"></script>
+</head>
+
+    @if (isNgEnabled)
+    {
+        @:<body ng-app="@UmbracoAngularJs.Context.NgJsContext.Current.Provider.GetAppName()" ng-cloak>
+    }
+    else
+    {
+        @:<body>
+    }
+
+@RenderBody()
+
+
+<script type="text/javascript">
+// ======================================================
+// NG
+// ------------------------------------------------------
+@{ UmbracoAngularJs.Context.NgJsContext.Current.RegisterNgJsInitScript(); }
+@Html.NgJsInit()
+// ======================================================
+</script>
+
+</body>
+</html>
+

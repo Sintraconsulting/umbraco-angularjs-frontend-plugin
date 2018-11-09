@@ -1,0 +1,38 @@
+﻿@using UmbracoAngularJs.Extensions;
+@using UmbracoAngularJs.Classes;
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    NgJsViewDeps deps = new UmbracoAngularJs.Classes.NgJsViewDeps();
+
+    var modules = Model.MacroParameters["modules"] as string;
+    var services = Model.MacroParameters["services"] as string;
+    var directives = Model.MacroParameters["directives"] as string;
+    var components = Model.MacroParameters["components"] as string;
+    var filters = Model.MacroParameters["filters"] as string;
+
+    if (!string.IsNullOrWhiteSpace(modules))
+    {
+        deps.Modules.AddRange(modules.Split(',').Select(m => m.Trim()));
+    }
+
+    if (!string.IsNullOrWhiteSpace(services))
+    {
+        deps.Services.AddRange(services.Split(',').Select(s => s.Trim()));
+    }
+
+    if (!string.IsNullOrWhiteSpace(directives))
+    {
+        deps.Directives.AddRange(directives.Split(',').Select(d => d.Trim()));
+    }
+
+    if (!string.IsNullOrWhiteSpace(components))
+    {
+        deps.Components.AddRange(components.Split(',').Select(c => c.Trim()));
+    }
+
+    if (!string.IsNullOrWhiteSpace(filters))
+    {
+        deps.Filters.AddRange(filters.Split(',').Select(c => c.Trim()));
+    }
+}
+@Html.PartialNgJs(Model.MacroParameters["viewName"] as string, null, null, deps)

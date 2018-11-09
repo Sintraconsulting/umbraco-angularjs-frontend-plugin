@@ -328,3 +328,26 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+
+###########################################################
+
+# Umbraco specific, for all subprojects
+/*/App_Data/cache/
+/*/App_Data/Logs/
+/*/App_Data/NuGetBackup/
+!/*/App_Data/[Pp]ackages/*
+/*/App_Data/[Pp]review/
+/*/App_Data/TEMP/
+/*/App_Data/umbraco.config
+
+/*/Media/**
+!/*/Media/.gitkeep
+!/*/Media/Web.config
+
+/*/[Uu]mbraco/
+/*/[Uu]mbraco_Client
+
+# Umbraco test project specific
+!/UmbracoTest/App_Data/[Uu]mbraco.sdf
+
