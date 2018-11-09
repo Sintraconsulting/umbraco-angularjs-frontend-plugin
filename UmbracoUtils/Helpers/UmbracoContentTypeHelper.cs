@@ -13,10 +13,10 @@ namespace UmbracoUtils.Helpers
     {
         public static void AddOrUpdateDocType(IContentType docType)
         {
-            var contentTypeService = ApplicationContext.Current.Services.ContentTypeService;
-            var actualDocType = docType;
+            Umbraco.Core.Services.IContentTypeService contentTypeService = ApplicationContext.Current.Services.ContentTypeService;
+            IContentType actualDocType = docType;
 
-            var oldContentType = contentTypeService.GetContentType(docType.Alias);
+            IContentType oldContentType = contentTypeService.GetContentType(docType.Alias);
             actualDocType = oldContentType != null ? oldContentType.OverrideWith(docType) : docType;
 
             actualDocType.UpdateDate = DateTime.Now;

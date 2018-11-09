@@ -22,7 +22,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The path of the AngularJS related file.</returns>
         public static string GetNgJsFilePath(string dirPath, string fileName, string extension = ".js")
         {
-            var actualExt = extension.StartsWith(".") ? extension : "." + extension;
+            string actualExt = extension.StartsWith(".") ? extension : "." + extension;
             return Path.Combine(dirPath, fileName + actualExt);
         }
 
@@ -34,7 +34,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The mapped path on server.</returns>
         public static string MapPath(string virtualPath, string extIfNotPresent = ".js")
         {
-            var mappedPath = HttpContext.Current.Server.MapPath(virtualPath);
+            string mappedPath = HttpContext.Current.Server.MapPath(virtualPath);
             return Path.HasExtension(mappedPath) ? mappedPath : mappedPath + ".js";
         }
 

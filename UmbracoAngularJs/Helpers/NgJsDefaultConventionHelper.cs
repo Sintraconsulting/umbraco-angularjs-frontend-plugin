@@ -34,7 +34,6 @@ namespace UmbracoAngularJs.Helpers
         private static readonly string FiltersDirConfigKey = "filtersDir";
         private static readonly string DefaultFiltersDir = "~/Ng/Filters/";
 
-
         private static readonly string DefaultDepsDirConfigKey = "defaultDeps";
 
         /// <summary>
@@ -43,8 +42,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The AngularJS views path on server./returns>
         public static string GetViewsPath()
         {
-            string viewsDir;
-            return TryGetConfigFromAppSettings(ViewsDirConfigKey, out viewsDir) ? viewsDir : DefaultViewsDir;
+            return TryGetConfigFromAppSettings(ViewsDirConfigKey, out string viewsDir) ? viewsDir : DefaultViewsDir;
         }
 
         /// <summary>
@@ -53,9 +51,8 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The AngularJS services path on server./returns>
         public static string GetServicesPath()
         {
-            string servicesDir;
             return
-                TryGetConfigFromAppSettings(ServicesDirConfigKey, out servicesDir) ? servicesDir : DefaultServicesDir;
+                TryGetConfigFromAppSettings(ServicesDirConfigKey, out string servicesDir) ? servicesDir : DefaultServicesDir;
         }
 
         /// <summary>
@@ -64,8 +61,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The AngularJS configs path on server./returns>
         public static string GetConfigsPath()
         {
-            string configDir;
-            return TryGetConfigFromAppSettings(ConfigsDirConfigKey, out configDir) ? configDir : DefaultConfigsDir;
+            return TryGetConfigFromAppSettings(ConfigsDirConfigKey, out string configDir) ? configDir : DefaultConfigsDir;
         }
 
         /// <summary>
@@ -74,8 +70,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The AngularJS components path on server./returns>
         public static string GetComponentsPath()
         {
-            string componentsDir;
-            return TryGetConfigFromAppSettings(ComponentsDirConfigKey, out componentsDir)
+            return TryGetConfigFromAppSettings(ComponentsDirConfigKey, out string componentsDir)
                 ? componentsDir : DefaultComponentsDir;
         }
 
@@ -85,8 +80,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The AngularJS directives path on server./returns>
         public static string GetDirectivesPath()
         {
-            string directivesDir;
-            return TryGetConfigFromAppSettings(DirectivesDirConfigKey, out directivesDir)
+            return TryGetConfigFromAppSettings(DirectivesDirConfigKey, out string directivesDir)
                 ? directivesDir : DefaultDirectivesDir;
         }
 
@@ -96,8 +90,7 @@ namespace UmbracoAngularJs.Helpers
         /// <returns>The AngularJS filters path on server./returns>
         public static string GetFiltersPath()
         {
-            string filtersDir;
-            return TryGetConfigFromAppSettings(FiltersDirConfigKey, out filtersDir)
+            return TryGetConfigFromAppSettings(FiltersDirConfigKey, out string filtersDir)
                 ? filtersDir : DefaultFiltersDir;
         }
 
@@ -109,8 +102,7 @@ namespace UmbracoAngularJs.Helpers
         {
             NgJsViewDeps res = new NgJsViewDeps();
 
-            string defaultDeps;
-            if (!TryGetConfigFromAppSettings(DefaultDepsDirConfigKey, out defaultDeps))
+            if (!TryGetConfigFromAppSettings(DefaultDepsDirConfigKey, out string defaultDeps))
             {
                 return res;
             }
@@ -121,7 +113,7 @@ namespace UmbracoAngularJs.Helpers
 
         private static bool TryGetConfigFromAppSettings(string ngJsConfigKey, out string value)
         {
-            var completeConfigKey = AppSettingsPrefix + ngJsConfigKey;
+            string completeConfigKey = AppSettingsPrefix + ngJsConfigKey;
             if (string.IsNullOrEmpty(completeConfigKey))
             {
                 throw new ArgumentException("'configKey' cannot be null or empty");

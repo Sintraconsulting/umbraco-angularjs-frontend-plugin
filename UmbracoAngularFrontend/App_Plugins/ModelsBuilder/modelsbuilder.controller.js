@@ -1,5 +1,4 @@
 ﻿function modelsBuilderController($scope, umbRequestHelper, $log, $http, modelsBuilderResource) {
-
     $scope.generate = function() {
         $scope.generating = true;
         umbRequestHelper.resourcePromise(

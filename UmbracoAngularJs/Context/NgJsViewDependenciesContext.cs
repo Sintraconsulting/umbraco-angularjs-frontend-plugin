@@ -20,7 +20,7 @@ namespace UmbracoAngularJs.Context
         /// </summary>
         public NgJsViewDependenciesContext()
         {
-            this.Dependencies = new Dictionary<string, NgJsViewDeps>();
+            Dependencies = new Dictionary<string, NgJsViewDeps>();
         }
 
         /// <summary>
@@ -29,15 +29,9 @@ namespace UmbracoAngularJs.Context
         /// <value>
         /// The current instance of <see cref="NgJsViewDependenciesContext"/>.
         /// </value>
-        public static NgJsViewDependenciesContext Current
-        {
-            get
-            {
-                return (HttpContext.Current.Items[HttpContextKey] as NgJsViewDependenciesContext)
+        public static NgJsViewDependenciesContext Current => (HttpContext.Current.Items[HttpContextKey] as NgJsViewDependenciesContext)
                     ?? (HttpContext.Current.Items[HttpContextKey]
                     = new NgJsViewDependenciesContext()) as NgJsViewDependenciesContext;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the AngularJS initialize script.

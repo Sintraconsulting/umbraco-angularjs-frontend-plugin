@@ -35,8 +35,8 @@ namespace UmbracoAngularJs.Classes
         /// </value>
         public string NgName
         {
-            get => this.ngName != null ? this.ngName : this.JsName;
-            set => this.ngName = value;
+            get => ngName != null ? ngName : JsName;
+            set => ngName = value;
         }
     }
 }

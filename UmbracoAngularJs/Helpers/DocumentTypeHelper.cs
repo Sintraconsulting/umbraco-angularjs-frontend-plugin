@@ -33,8 +33,10 @@ namespace UmbracoAngularJs.Helpers
             // Angular JS related properties
             res.AddPropertyGroup("AngularJs");
 
-            var enableJsPropType = new PropertyType(new DataTypeDefinition("Umbraco.TrueFalse"), "enableNg");
-            enableJsPropType.Name = "Enable AngularJS?";
+            PropertyType enableJsPropType = new PropertyType(new DataTypeDefinition("Umbraco.TrueFalse"), "enableNg")
+            {
+                Name = "Enable AngularJS?"
+            };
             res.AddPropertyType(enableJsPropType, "AngularJs");
 
             return res;

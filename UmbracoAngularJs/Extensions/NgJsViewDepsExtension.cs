@@ -5,7 +5,6 @@
 namespace UmbracoAngularJs.Extensions
 {
     using System.Collections.Generic;
-    using System.Linq;
     using UmbracoAngularJs.Classes;
 
     /// <summary>
@@ -36,7 +35,7 @@ namespace UmbracoAngularJs.Extensions
         {
             if (other != null)
             {
-                foreach (var o in other)
+                foreach (string o in other)
                 {
                     if (!target.Contains(o))
                     {

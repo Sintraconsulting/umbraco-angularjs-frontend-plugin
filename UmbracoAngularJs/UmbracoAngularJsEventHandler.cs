@@ -7,15 +7,14 @@ namespace UmbracoAngularJs
     using System.Linq;
     using Umbraco.Core;
     using UmbracoAngularJs.Helpers;
-    using UmbracoUtils.Helpers;
 
     public class UmbracoAngularJsEventHandler : ApplicationEventHandler
     {
         private void EnsureAngularJsMasterExists()
         {
             // crea un'istanza del documento Ng di base
-            var ngJsMasterDocType = DocumentTypeHelper.GetAngularJsMasterDocType();
-            var currentNgDocType = ApplicationContext.Current.Services.ContentTypeService.GetContentType(ngJsMasterDocType.Alias);
+            Umbraco.Core.Models.IContentType ngJsMasterDocType = DocumentTypeHelper.GetAngularJsMasterDocType();
+            Umbraco.Core.Models.IContentType currentNgDocType = ApplicationContext.Current.Services.ContentTypeService.GetContentType(ngJsMasterDocType.Alias);
 
             if (currentNgDocType == null)
             {
@@ -52,7 +51,7 @@ namespace UmbracoAngularJs
                 //currentNgDocType.Path = ngJsMasterDocType.Path;
                 //currentNgDocType.SortOrder = ngJsMasterDocType.SortOrder;
 
-                foreach (var defaultPropertyGroup in ngJsMasterDocType.PropertyGroups)
+                foreach (Umbraco.Core.Models.PropertyGroup defaultPropertyGroup in ngJsMasterDocType.PropertyGroups)
                 {
                     // se il docType attuale non contiene i "tab" predefiniti, allora vengono aggiunti
                     if (!currentNgDocType.PropertyGroups.Contains(defaultPropertyGroup.Name))
@@ -61,7 +60,7 @@ namespace UmbracoAngularJs
                     }
                 }
 
-                foreach (var defaultPropertyType in ngJsMasterDocType.PropertyTypes)
+                foreach (Umbraco.Core.Models.PropertyType defaultPropertyType in ngJsMasterDocType.PropertyTypes)
                 {
                     // se il docType attuale non contiene le proprietà predefinite, allora vengono aggiunte
                     if (!currentNgDocType.PropertyTypes.Contains(defaultPropertyType))
@@ -74,7 +73,6 @@ namespace UmbracoAngularJs
             ApplicationContext.Current.Services.ContentTypeService.Save(currentNgDocType);
         }
 
-
         protected override void ApplicationStarted(
             UmbracoApplicationBase umbracoApplication,
             ApplicationContext applicationContext)
@@ -86,7 +84,7 @@ namespace UmbracoAngularJs
             //// aggiunge o aggiorna il documento Ng
             //UmbracoContentTypeHelper.AddOrUpdateDocType(ngJsMasterDocType);
 
-            this.EnsureAngularJsMasterExists();
+            EnsureAngularJsMasterExists();
         }
     }
 }

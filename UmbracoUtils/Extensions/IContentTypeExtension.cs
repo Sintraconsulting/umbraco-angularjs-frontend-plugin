@@ -4,8 +4,8 @@
 
 namespace UmbracoUtils.Extensions
 {
-    using Umbraco.Core.Models;
     using System.Linq;
+    using Umbraco.Core.Models;
 
     public static class IContentTypeExtension
     {
@@ -40,7 +40,7 @@ namespace UmbracoUtils.Extensions
 
             // fix: rimuoveva i gruppi creati da backend
             // obj.PropertyGroups = other.PropertyGroups;
-            foreach (var otherPropertyGroup in other.PropertyGroups)
+            foreach (PropertyGroup otherPropertyGroup in other.PropertyGroups)
             {
                 if (obj.PropertyGroups.Contains(otherPropertyGroup.Name))
                 {
@@ -49,7 +49,7 @@ namespace UmbracoUtils.Extensions
                 }
             }
 
-            foreach (var p in other.PropertyTypes)
+            foreach (PropertyType p in other.PropertyTypes)
             {
                 if (!obj.PropertyTypes.Contains(p))
                 {

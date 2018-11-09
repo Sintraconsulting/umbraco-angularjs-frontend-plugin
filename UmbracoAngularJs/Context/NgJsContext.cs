@@ -11,7 +11,6 @@ namespace UmbracoAngularJs.Context
     using System.Text;
     using System.Web;
     using UmbracoAngularJs.Classes;
-    using UmbracoAngularJs.Extensions;
     using UmbracoAngularJs.Helpers;
     using UmbracoAngularJs.Providers;
 
@@ -50,7 +49,7 @@ namespace UmbracoAngularJs.Context
         {
             get
             {
-                var current = HttpContext.Current.Items[HttpContextKey] as NgJsContext;
+                NgJsContext current = HttpContext.Current.Items[HttpContextKey] as NgJsContext;
 
                 if (current == null)
                 {
@@ -87,17 +86,17 @@ namespace UmbracoAngularJs.Context
         /// </summary>
         public void RegisterNgJsInitScript()
         {
-            string script = this.GenerateNgJsInitScript();
+            string script = GenerateNgJsInitScript();
             NgJsViewDependenciesContext.Current.InitScript = script;
         }
 
         private string GenerateNgJsInitScript()
         {
             // Get app name
-            string appName = this.Provider.GetAppName();
+            string appName = Provider.GetAppName();
 
             // Gather specified dependencies
-            Dictionary<string, NgJsViewDeps> dependencies = this.Provider.GetAllDependencies();
+            Dictionary<string, NgJsViewDeps> dependencies = Provider.GetAllDependencies();
 
             // Gather all distinct AngularJS module names
             List<string> moduleNames = dependencies.Values.Select(d => d.Modules).Aggregate(
@@ -113,17 +112,17 @@ namespace UmbracoAngularJs.Context
                 ScriptHelper.GetJsStringArray(moduleNames));
             script.AppendLine(string.Empty);
 
-            this.RegisterModulesConfig(script, moduleNames);
-            this.RegisterServices(script, dependencies);
-            this.RegisterDirectives(script, dependencies);
-            this.RegisterComponents(script, dependencies);
-            this.RegisterFilters(script, dependencies);
+            RegisterModulesConfig(script, moduleNames);
+            RegisterServices(script, dependencies);
+            RegisterDirectives(script, dependencies);
+            RegisterComponents(script, dependencies);
+            RegisterFilters(script, dependencies);
 
-            this.AppendViews(script, dependencies);
+            AppendViews(script, dependencies);
             script.AppendLine(string.Empty);
 
-            this.RegisterViewControllers(script, dependencies);
-            this.RegisterScopeInit(script, dependencies);
+            RegisterViewControllers(script, dependencies);
+            RegisterScopeInit(script, dependencies);
 
             return script.ToString();
         }
@@ -133,9 +132,9 @@ namespace UmbracoAngularJs.Context
             script.AppendLine();
             script.AppendLine("/** Register modules config **/");
 
-            foreach (var module in moduleNames)
+            foreach (string module in moduleNames)
             {
-                var moduleConfig = this.Provider.GetConfigData(module);
+                NgJsBaseData moduleConfig = Provider.GetConfigData(module);
 
                 if (File.Exists(moduleConfig.Path))
                 {
@@ -170,12 +169,12 @@ namespace UmbracoAngularJs.Context
             // include services one time only
             foreach (string service in services.Distinct())
             {
-                var serviceData = this.Provider.GetServiceData(service);
+                NgJsBaseData serviceData = Provider.GetServiceData(service);
 
                 script.AppendLine();
-                if (this.IncludeMode == IncludeMode.Load)
+                if (IncludeMode == IncludeMode.Load)
                 {
-                    var mappedPath = NgJsHelper.MapPath(serviceData.Path);
+                    string mappedPath = NgJsHelper.MapPath(serviceData.Path);
                     if (File.Exists(mappedPath))
                     {
                         script.Append(File.ReadAllText(mappedPath));
@@ -203,9 +202,9 @@ namespace UmbracoAngularJs.Context
             script.AppendLine();
             script.AppendLine("/** Register directives: start **/");
 
-            foreach (var directiveName in directives)
+            foreach (string directiveName in directives)
             {
-                var directiveData = this.Provider.GetDirectiveData(directiveName);
+                NgJsBaseData directiveData = Provider.GetDirectiveData(directiveName);
                 string directiveJs = File.ReadAllText(NgJsHelper.MapPath(directiveData.Path));
 
                 string directiveScript = string.Format(
@@ -230,9 +229,9 @@ namespace UmbracoAngularJs.Context
             script.AppendLine();
             script.AppendLine("/** Register components: start **/");
 
-            foreach (var componentName in components)
+            foreach (string componentName in components)
             {
-                var componentData = this.Provider.GetComponentData(componentName);
+                NgJsBaseData componentData = Provider.GetComponentData(componentName);
                 string componentJs = File.ReadAllText(NgJsHelper.MapPath(componentData.Path));
 
                 string componentScript = string.Format(
@@ -257,9 +256,9 @@ namespace UmbracoAngularJs.Context
             script.AppendLine();
             script.AppendLine("/** Register filters: start **/");
 
-            foreach (var filterName in filters)
+            foreach (string filterName in filters)
             {
-                var filterData = this.Provider.GetFilterData(filterName);
+                NgJsBaseData filterData = Provider.GetFilterData(filterName);
                 string filterJs = File.ReadAllText(NgJsHelper.MapPath(filterData.Path));
 
                 string filterScript = string.Format(
@@ -284,7 +283,7 @@ namespace UmbracoAngularJs.Context
                 if (!string.IsNullOrEmpty(dep.View))
                 {
                     script.AppendLine();
-                    if (this.IncludeMode == IncludeMode.Load)
+                    if (IncludeMode == IncludeMode.Load)
                     {
                         script.AppendLine(dep.View);
                     }
@@ -309,7 +308,7 @@ namespace UmbracoAngularJs.Context
 
                 if (!string.IsNullOrEmpty(dep.View))
                 {
-                    var viewData = this.Provider.GetViewData(c);
+                    NgJsViewData viewData = Provider.GetViewData(c);
 
                     script.AppendFormat("app.controller(\"{0}\", {0}); ", viewData.JsName);
                     script.AppendLine();
@@ -325,9 +324,9 @@ namespace UmbracoAngularJs.Context
             script.AppendLine();
             script.AppendLine("/** Register init functions **/");
 
-            foreach (var viewName in dependencies.Keys)
+            foreach (string viewName in dependencies.Keys)
             {
-                var viewData = this.Provider.GetViewData(viewName);
+                NgJsViewData viewData = Provider.GetViewData(viewName);
 
                 script.AppendFormat("if (typeof {0} == 'function') {{", viewData.InitFunctionJsName);
                 script.AppendFormat("app.run({0});", viewData.InitFunctionJsName);

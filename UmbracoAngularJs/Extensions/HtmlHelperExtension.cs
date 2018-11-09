@@ -87,10 +87,10 @@ namespace UmbracoAngularJs.Extensions
             ViewDataDictionary viewDataDictionary,
             NgJsViewDeps ngJsDeps = null)
         {
-            var sanitizedViewName = GetSanitizedNameFrom(viewName);
-            var viewData = NgJsContext.Current.Provider.GetViewData(sanitizedViewName);
+            string sanitizedViewName = GetSanitizedNameFrom(viewName);
+            NgJsViewData viewData = NgJsContext.Current.Provider.GetViewData(sanitizedViewName);
 
-            var actualNgDeps = new NgJsViewDeps();
+            NgJsViewDeps actualNgDeps = new NgJsViewDeps();
             NgJsViewDependenciesContext.Current.Dependencies.Add(sanitizedViewName, actualNgDeps);
             actualNgDeps.Merge(ngJsDeps);
             LoadView(actualNgDeps, viewData);
@@ -127,7 +127,7 @@ namespace UmbracoAngularJs.Extensions
 
         private static string GetSanitizedNameFrom(string viewName)
         {
-            var res = Path.GetFileNameWithoutExtension(viewName);
+            string res = Path.GetFileNameWithoutExtension(viewName);
             return res;
         }
     }

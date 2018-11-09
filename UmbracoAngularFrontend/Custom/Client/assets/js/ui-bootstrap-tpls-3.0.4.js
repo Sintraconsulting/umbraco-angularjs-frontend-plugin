@@ -2141,7 +2141,6 @@ angular.module('ui.bootstrap.position', [])
     var BODY_REGEX = /(HTML|BODY)/;
 
     return {
-
       /**
        * Provides a raw DOM element from a jQuery/jQLite element.
        *
@@ -3628,7 +3627,7 @@ angular.module('ui.bootstrap.dropdown', ['ui.bootstrap.multiMap', 'ui.bootstrap.
 
       self.dropdownMenu.css(css);
     }
-      
+
     // find openContainer by uib-dropdown-menu directive
     var openContainer = appendTo ? appendTo : angular.element($element[0].querySelector("[uib-dropdown-menu]"));
     var dropdownOpenClass = appendTo ? appendToOpenClass : openClass;
@@ -3642,10 +3641,10 @@ angular.module('ui.bootstrap.dropdown', ['ui.bootstrap.multiMap', 'ui.bootstrap.
       } else {
         toggleClass = isOpen ? 'addClass' : 'removeClass';
       }
-        
+
       // original Bootstrap 4 dropdown sets openClass on both dropdownMenu and element
       $animate[toggleClass]($element, dropdownOpenClass);
-      
+
       $animate[toggleClass](openContainer, dropdownOpenClass).then(function() {
         if (angular.isDefined(isOpen) && isOpen !== wasOpen) {
           toggleInvoker($scope, { open: !!isOpen });
@@ -3961,7 +3960,6 @@ angular.module('ui.bootstrap.modal', ['ui.bootstrap.multiMap', 'ui.bootstrap.sta
               }).start().then(done);
             });
           }
-
 
           $q.when(animationPromise).then(function() {
             // Notify {@link $modalStack} that modal is rendered.
@@ -5115,7 +5113,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                 positionTimeout = $timeout(function() {
                   var placementClasses = $position.parsePlacement(ttScope.placement);
                   var placement = placementClasses[1] === 'center' ? placementClasses[0] : placementClasses[0] + '-' + placementClasses[1];
-				  
+
                   // need to add classes prior to placement to allow correct tooltip width calculations
                   if (!tooltip.hasClass(placementClasses[0])) {
                     tooltip.removeClass(lastPlacement.split('-')[0]);
@@ -5126,7 +5124,7 @@ angular.module('ui.bootstrap.tooltip', ['ui.bootstrap.position', 'ui.bootstrap.s
                     tooltip.removeClass(options.placementClassPrefix + lastPlacement);
                     tooltip.addClass(options.placementClassPrefix + placement);
                   }
-                  
+
                   // Take into account tooltup margins, since boostrap css draws tooltip arrow inside margins
                   var ttPosition = $position.positionElements(element, tooltip, ttScope.placement, appendToBody, true);
                   var initialHeight = angular.isDefined(tooltip.offsetHeight) ? tooltip.offsetHeight : tooltip.prop('offsetHeight');
@@ -6596,7 +6594,6 @@ angular.module('ui.bootstrap.timepicker', [])
         });
       }
     });
-
   };
 
   this.render = function() {

@@ -16,11 +16,11 @@ namespace UmbracoAngularJs.Classes
         /// </summary>
         public NgJsViewDeps()
         {
-            this.Services = new List<string>();
-            this.Modules = new List<string>();
-            this.Components = new List<string>();
-            this.Directives = new List<string>();
-            this.Filters = new List<string>();
+            Services = new List<string>();
+            Modules = new List<string>();
+            Components = new List<string>();
+            Directives = new List<string>();
+            Filters = new List<string>();
         }
 
         /// <summary>

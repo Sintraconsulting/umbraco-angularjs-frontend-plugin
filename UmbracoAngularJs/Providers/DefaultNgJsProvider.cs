@@ -10,7 +10,6 @@ namespace UmbracoAngularJs.Providers
     using System.Web;
     using UmbracoAngularJs.Classes;
     using UmbracoAngularJs.Context;
-    using UmbracoAngularJs.Extensions;
     using UmbracoAngularJs.Helpers;
     using UmbracoUtils.Extensions;
 
@@ -43,12 +42,12 @@ namespace UmbracoAngularJs.Providers
         {
             get
             {
-                if (this.cachedViewsPath == null)
+                if (cachedViewsPath == null)
                 {
-                    this.cachedViewsPath = NgJsDefaultConventionHelper.GetViewsPath();
+                    cachedViewsPath = NgJsDefaultConventionHelper.GetViewsPath();
                 }
 
-                return this.cachedViewsPath;
+                return cachedViewsPath;
             }
         }
 
@@ -56,12 +55,12 @@ namespace UmbracoAngularJs.Providers
         {
             get
             {
-                if (this.cachedConfigsPath == null)
+                if (cachedConfigsPath == null)
                 {
-                    this.cachedConfigsPath = NgJsDefaultConventionHelper.GetConfigsPath();
+                    cachedConfigsPath = NgJsDefaultConventionHelper.GetConfigsPath();
                 }
 
-                return this.cachedConfigsPath;
+                return cachedConfigsPath;
             }
         }
 
@@ -69,12 +68,12 @@ namespace UmbracoAngularJs.Providers
         {
             get
             {
-                if (this.cachedServicesPath == null)
+                if (cachedServicesPath == null)
                 {
-                    this.cachedServicesPath = NgJsDefaultConventionHelper.GetServicesPath();
+                    cachedServicesPath = NgJsDefaultConventionHelper.GetServicesPath();
                 }
 
-                return this.cachedServicesPath;
+                return cachedServicesPath;
             }
         }
 
@@ -82,12 +81,12 @@ namespace UmbracoAngularJs.Providers
         {
             get
             {
-                if (this.cachedComponentsPath == null)
+                if (cachedComponentsPath == null)
                 {
-                    this.cachedComponentsPath = NgJsDefaultConventionHelper.GetComponentsPath();
+                    cachedComponentsPath = NgJsDefaultConventionHelper.GetComponentsPath();
                 }
 
-                return this.cachedComponentsPath;
+                return cachedComponentsPath;
             }
         }
 
@@ -95,12 +94,12 @@ namespace UmbracoAngularJs.Providers
         {
             get
             {
-                if (this.cachedFiltersPath == null)
+                if (cachedFiltersPath == null)
                 {
-                    this.cachedFiltersPath = NgJsDefaultConventionHelper.GetFiltersPath();
+                    cachedFiltersPath = NgJsDefaultConventionHelper.GetFiltersPath();
                 }
 
-                return this.cachedFiltersPath;
+                return cachedFiltersPath;
             }
         }
 
@@ -108,18 +107,18 @@ namespace UmbracoAngularJs.Providers
         {
             get
             {
-                if (this.cachedDirectivesPath == null)
+                if (cachedDirectivesPath == null)
                 {
-                    this.cachedDirectivesPath = NgJsDefaultConventionHelper.GetDirectivesPath();
+                    cachedDirectivesPath = NgJsDefaultConventionHelper.GetDirectivesPath();
                 }
 
-                return this.cachedDirectivesPath;
+                return cachedDirectivesPath;
             }
         }
 
         public string GetAppName()
         {
-            var routeValues = HttpContext.Current.Request.RequestContext.RouteData.Values;
+            System.Web.Routing.RouteValueDictionary routeValues = HttpContext.Current.Request.RequestContext.RouteData.Values;
 
             string name = string.Empty;
             if (routeValues != null)
@@ -152,15 +151,15 @@ namespace UmbracoAngularJs.Providers
 
             return new NgJsBaseData
             {
-                Path = NgJsHelper.GetNgJsFilePath(this.ConfigsPath, configName, JsExt),
+                Path = NgJsHelper.GetNgJsFilePath(ConfigsPath, configName, JsExt),
                 JsName = configName
             };
         }
 
         public NgJsViewData GetViewData(string viewName)
         {
-            var baseDir = Path.Combine(this.ViewsPath, viewName);
-            var baseFilename = viewName + DefaultViewSuffix;
+            string baseDir = Path.Combine(ViewsPath, viewName);
+            string baseFilename = viewName + DefaultViewSuffix;
 
             return new NgJsViewData
             {
@@ -173,22 +172,22 @@ namespace UmbracoAngularJs.Providers
 
         public NgJsBaseData GetServiceData(string serviceName)
         {
-            var basename = serviceName + DefaultServiceSuffix;
+            string basename = serviceName + DefaultServiceSuffix;
 
             return new NgJsBaseData
             {
-                Path = NgJsHelper.GetNgJsFilePath(this.ServicesPath, basename, JsExt),
+                Path = NgJsHelper.GetNgJsFilePath(ServicesPath, basename, JsExt),
                 JsName = basename
             };
         }
 
         public NgJsBaseData GetComponentData(string componentName)
         {
-            var basename = componentName + DefaultComponentSuffix;
+            string basename = componentName + DefaultComponentSuffix;
 
             return new NgJsBaseData
             {
-                Path = NgJsHelper.GetNgJsFilePath(Path.Combine(this.ComponentsPath, componentName), basename, JsExt),
+                Path = NgJsHelper.GetNgJsFilePath(Path.Combine(ComponentsPath, componentName), basename, JsExt),
                 JsName = basename,
                 NgName = componentName.FirstCharToLower()
             };
@@ -196,11 +195,11 @@ namespace UmbracoAngularJs.Providers
 
         public NgJsBaseData GetDirectiveData(string directiveName)
         {
-            var basename = directiveName + DefaultDirectiveSuffix;
+            string basename = directiveName + DefaultDirectiveSuffix;
 
             return new NgJsBaseData
             {
-                Path = NgJsHelper.GetNgJsFilePath(Path.Combine(this.DirectivesPath, directiveName), basename, JsExt),
+                Path = NgJsHelper.GetNgJsFilePath(Path.Combine(DirectivesPath, directiveName), basename, JsExt),
                 JsName = basename,
                 NgName = directiveName.FirstCharToLower()
             };
@@ -208,11 +207,11 @@ namespace UmbracoAngularJs.Providers
 
         public NgJsBaseData GetFilterData(string filterName)
         {
-            var basename = filterName + DefaultFilterSuffix;
+            string basename = filterName + DefaultFilterSuffix;
 
             return new NgJsBaseData
             {
-                Path = NgJsHelper.GetNgJsFilePath(Path.Combine(this.FiltersPath, filterName), basename, JsExt),
+                Path = NgJsHelper.GetNgJsFilePath(Path.Combine(FiltersPath, filterName), basename, JsExt),
                 JsName = basename,
                 NgName = filterName.FirstCharToLower()
             };
@@ -220,9 +219,9 @@ namespace UmbracoAngularJs.Providers
 
         public Dictionary<string, NgJsViewDeps> GetAllDependencies()
         {
-            Dictionary<string, NgJsViewDeps> deps = this.GetCurrentViewSpecificDependencies();
+            Dictionary<string, NgJsViewDeps> deps = GetCurrentViewSpecificDependencies();
 
-            NgJsViewDeps defaultDeps = this.GetDefaultDependencies();
+            NgJsViewDeps defaultDeps = GetDefaultDependencies();
 
             if (defaultDeps != null)
             {
@@ -234,7 +233,7 @@ namespace UmbracoAngularJs.Providers
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
 
         private NgJsViewDeps GetDefaultDependencies()

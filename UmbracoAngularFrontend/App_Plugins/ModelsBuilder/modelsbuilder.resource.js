@@ -1,5 +1,4 @@
 ﻿function modelsBuilderResource($q, $http, umbRequestHelper) {
-
     return {
         getModelsOutOfDateStatus: function () {
             return umbRequestHelper.resourcePromise(

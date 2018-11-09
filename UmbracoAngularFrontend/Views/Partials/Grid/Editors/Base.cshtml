@@ -6,7 +6,7 @@
     {
         string view = contentItem.editor.render != null ? contentItem.editor.render.ToString() : contentItem.editor.view.ToString();
         view = view.ToLower().Replace(".html", ".cshtml");
-        
+
         if (!view.Contains("/")) {
             view = "grid/editors/" + view;
         }
@@ -16,9 +16,9 @@
 }
 @try
 {
-    string editor = EditorView(Model);                                                       
+    string editor = EditorView(Model);
     <text>@Html.Partial(editor, (object)Model)</text>
 }
-catch (Exception ex) { 
+catch (Exception ex) {
 <pre>@ex.ToString()</pre>
 }
