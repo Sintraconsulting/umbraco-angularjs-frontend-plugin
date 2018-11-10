@@ -13,6 +13,10 @@ By installing the plugin, core dll are added, this allow to integrate AngularJs 
 ###  Steps for configuration
 
 1. Install plugin from umbraco marketplace
-2. Setup masterpage to load dynamically the angular engine
-3. Enable Angular on pages
+2. plugin will create a new masterpage and an angular enabled content page
+3. Unlock angular page under regular content or home
 4. Add view or component into applications
+
+
+### Naming convention and folder structure
+
