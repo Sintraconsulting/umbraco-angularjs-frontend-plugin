@@ -42,4 +42,13 @@ Use conventional placement of file to bind view with controllers:
 
 
 ### Naming convention and folder structure
+TBD
 
+## AngularJs page not visible under content page or home
+Just add it as "allowed child" under home, content page, or other content types.
+![enable angular js under home of umbraco](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/enable-angular-umbraco.png)
+![enable angular js unde content type page of umbraco](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/enable-on-content-page.png)
+
+
+## Reference
+- [Plugin page on umbraco markeplace](https://our.umbraco.com/packages/developer-tools/umbraco-angularjs-frontend-plugin/)
