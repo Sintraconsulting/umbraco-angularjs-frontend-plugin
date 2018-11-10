@@ -17,12 +17,24 @@ By installing the plugin, core dll are added, this allow to integrate AngularJs 
 3. Unlock angular page under regular content or home
 4. Add view or component into applications
 
-![add angularview on umbraco frontend](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/add-angular-view.png)
-![configure angular view on umbraco](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/configure-angular-view.png)
-![conventional folder placement](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/conventional-folder.png)
+See gift to see the plugin in action
+![tutorial angular umbraco](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/usage.gif)
+
+
+Enable AngularJs on a page
 ![enable angular macro on umbraco frontend](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/enable-angular-umbraco.png)
 
-![tutorial angular umbraco](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/usage.gif)
+Add an angular view into a page
+![add angularview on umbraco frontend](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/add-angular-view.png)
+
+Configure angular view on umbraco frontend, using editor and this plugin:
+![configure angular view on umbraco](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/configure-angular-view.png)
+
+Use conventional placement of file to bind view with controllers
+![conventional folder placement](https://raw.githubusercontent.com/Sintraconsulting/umbraco-angularjs-frontend-plugin/master/docs/images/conventional-folder.png)
+
+
+
 
 ### Naming convention and folder structure
 
