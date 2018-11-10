@@ -351,3 +351,4 @@ ASALocalRun/
 # Umbraco test project specific
 !/UmbracoTest/App_Data/[Uu]mbraco.sdf
 
+/UmbracoAngularFrontend/App_Data/packages/created
