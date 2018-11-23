@@ -278,6 +278,9 @@
     <Content Include="Custom\Client\assets\js\ui-bootstrap-tpls-3.0.4.js" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Ng\Components\AngularJsTest\AngularJsTestComponent.html" />
+    <Content Include="Ng\Components\AngularJsTest\AngularJsTestComponent.js" />
+    <Content Include="Ng\Services\TestService.js" />
     <Content Include="Ng\Views\AngularJsTest\AngularJsTestView.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -345,6 +348,7 @@
       <Name>UmbracoUtils</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
